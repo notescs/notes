@@ -800,6 +800,113 @@ Default copy constructor only does shallow copy, i.e., a member by member copy.
 
 ![deep-copy-shallow-copy](shallow-copy-deep-copy.jpg)
 
+```cpp
+#include <bits/stdc++.h>
+
+class MyString {
+private:
+    char *m_data{};
+    int m_length{};
+ 
+public:
+    MyString(const char *source="") {
+        assert(source);
+        m_length = std::strlen(source) + 1;
+
+        m_data = new char[m_length];
+
+        for (int i = 0; i < m_length; ++i)
+            m_data[i] = source[i];
+    
+        // Make sure the string is terminated
+        m_data[m_length-1] = '\0';
+    }
+ 
+    ~MyString() {
+        delete[] m_data;
+    }
+
+	char* getString() { return m_data; }
+};
+
+
+int main() {
+	MyString hello{ "Hello, world!" };
+	{
+    	MyString copy{ hello }; // use default copy constructor
+   
+    } // copy is a local variable, so it gets destroyed here.  The destructor deletes copy's string, which leaves hello with a dangling pointer
+    std::cout << hello.getString() << '\n'; // this will have undefined behavior if we don't use deep copy
+	return 0;
+}
+```
+
+The above example shows the issue with shallow copy. Let's use deep copy to fix
+it:
+
+
+```cpp
+#include <bits/stdc++.h>
+
+class MyString {
+private:
+    char *m_data{};
+    int m_length{};
+ 
+public:
+    MyString(const char *source="")
+    {
+        assert(source);
+        m_length = std::strlen(source) + 1;
+
+        m_data = new char[m_length];
+
+        for (int i{ 0 }; i < m_length; ++i)
+            m_data[i] = source[i];
+    
+        // Make sure the string is terminated
+        m_data[m_length-1] = '\0';
+    }
+ 
+    ~MyString() {
+        delete[] m_data;
+    }
+ 
+    char* getString() { return m_data; }
+    int getLength() { return m_length; }
+    
+    void deepCopy(const MyString &source) {
+        delete[] m_data;
+        m_length = source.m_length;
+        
+        if (source.m_data) {
+            m_data = new char[m_length];
+            for (int i = 0; i < m_length; ++i) {
+                m_data[i] = source.m_data[i];
+            }
+        } else {
+            m_data = nullptr;
+        }
+    }
+    
+    MyString(const MyString &source) {
+        deepCopy(source);
+    }
+};
+
+
+int main() {
+	MyString hello{ "Hello, world!" };
+	{
+    	MyString copy{ hello }; // use default copy constructor
+	}
+    // copy is a local variable, so it gets destroyed here. The destructor deletes copy's string, since we
+	// have used deep copy, hello will have it's own copy of the string
+    std::cout << hello.getString() << '\n'; // no longer undefined behavior
+	return 0;
+}
+```
+
 # Operator Overloading
 
 ```cpp
