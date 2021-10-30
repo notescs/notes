@@ -819,7 +819,7 @@ public:
             m_data[i] = source[i];
     
         // Make sure the string is terminated
-        m_data[m_length-1] = '\0';
+        m_data[m_length - 1] = '\0';
     }
  
     ~MyString() {
@@ -844,7 +844,6 @@ int main() {
 The above example shows the issue with shallow copy. Let's use deep copy to fix
 it:
 
-
 ```cpp
 #include <bits/stdc++.h>
 
@@ -854,18 +853,17 @@ private:
     int m_length{};
  
 public:
-    MyString(const char *source="")
-    {
+    MyString(const char *source="") {
         assert(source);
         m_length = std::strlen(source) + 1;
 
         m_data = new char[m_length];
 
-        for (int i{ 0 }; i < m_length; ++i)
+        for (int i = 0; i < m_length; ++i)
             m_data[i] = source[i];
     
         // Make sure the string is terminated
-        m_data[m_length-1] = '\0';
+        m_data[m_length - 1] = '\0';
     }
  
     ~MyString() {
