@@ -1,36 +1,5 @@
 C, C++ &amp; OOPS for Interviews 
 
-# Table of Contents
-- [Table of Contents](#table-of-contents)
-- [Features of OOP](#features-of-oop)
-- [Smart Pointers](#smart-pointers)
-- [Name Mangling and Externs](#name-mangling-and-externs)
-- [Virtual Functions](#virtual-functions)
-	- [Pure Virtual Functions](#pure-virtual-functions)
-	- [Virtual Destructors](#virtual-destructors)
-	- [Virtual Table](#virtual-table)
-- [Virtual Base Class](#virtual-base-class)
-- [Friend Functions](#friend-functions)
-	- [Friends as Bridges](#friends-as-bridges)
-- [Friend Classes](#friend-classes)
-	- [Private constructors using Friend Classes](#private-constructors-using-friend-classes)
-- [Static Functions](#static-functions)
-- [Copy Constructors](#copy-constructors)
-- [Shallow Copy and Deep Copy](#shallow-copy-and-deep-copy)
-- [Operator Overloading](#operator-overloading)
-	- [Arithmetic Operators](#arithmetic-operators)
-- [Namespace](#namespace)
-- [Templates](#templates)
-	- [Function Templates](#function-templates)
-	- [Class Templates](#class-templates)
-- [Exceptions](#exceptions)
-- [free vs delete()](#free-vs-delete)
-- [C Storage Classes](#c-storage-classes)
-- [C Storage Layout](#c-storage-layout)
-- [Credits](#credits)
-
-
-
 # Features of OOP
 
 
