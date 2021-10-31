@@ -1,16 +1,3 @@
----
-title: Maximum Width of a Binary Tree
-date: "2021-08-30"
-template: "post"
-category: "Data Structures & Algorithms"
-tags:
-  - "tree"
-  - "cpp"
-  - "Difficulty: Medium"
-  - "Company: Amazon"
-description: "Given the root of a binary tree, return the maximum width of the given tree."
----
-
 <!-- Problem Statement -->
 
 Given the root of a binary tree, return the maximum width of the given tree.
@@ -57,7 +44,7 @@ width of each level of the binary tree.
 
 We know that a binary tree can be represented by an array (assuming the root begins
 from the position with index 1 in the array). If the index of a node is i, the
-indices of its left and right children are $2i$ and $2i + 1$ respectively.
+indices of its left and right children are 2i and 2i + 1 respectively.
 
 Here's how it looks:
 
@@ -101,8 +88,8 @@ int widthOfBinaryTree(TreeNode* root) {
 
 ### Complexity Analysis
 
-- **Time Complexity**: $O(N)$ where $N =$ number of nodes in the binary tree
-- **Space Complexity**: $O(N)$, at the worst case of skewed tree we will need
+- **Time Complexity**: O(N) where N = number of nodes in the binary tree
+- **Space Complexity**: O(N), at the worst case of skewed tree we will need
   to store all the nodes in the queue
 
 # Approach 2: Depth First Search
@@ -135,6 +122,6 @@ int widthOfBinaryTree(TreeNode* root) {
 }
 ```
 
-- **Time Complexity**: $O(N)$ where $N =$ number of nodes in the binary tree
-- **Space Complexity**: $O(N)$, at the worst case of skewed tree we will need
+- **Time Complexity**: O(N) where N = number of nodes in the binary tree
+- **Space Complexity**: O(N), at the worst case of skewed tree we will need
   to store the details of all the nodes in the recursion stack
