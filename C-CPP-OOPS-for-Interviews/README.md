@@ -718,6 +718,44 @@ Note the order of destructions. Clearly shows the LIFO stack underneath.
 
 **Can Static Functions be Virtual?** No.
 
+## Private Constructor using Static Function
+
+Since a static function can be called without instantiating the object, it can be
+used to instantiate an object having a private constructor.
+
+```cpp
+#include <iostream>
+using namespace std;
+
+class Alpha {
+private:
+	Alpha() {
+		cout << "Constructor of Alpha" << endl;
+	}
+public:
+	static Alpha* getObject() {
+		return new Alpha();
+	}
+	void whoAmI() {
+		cout << "I am Alpha" << endl;
+	}
+};
+
+
+int main() {
+	Alpha *alpha = Alpha::getObject();
+	alpha -> whoAmI();
+	return 0;
+}
+```
+
+Outputs:
+
+```
+Constructor of Alpha
+I am Alpha
+```
+
 # Copy Constructors
 
 ```cpp
