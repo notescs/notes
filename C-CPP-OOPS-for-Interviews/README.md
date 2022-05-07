@@ -2,7 +2,6 @@ C, C++ &amp; OOPS for Interviews
 
 # Features of OOP
 
-
 - **Abstraction**
 We try to obtain abstract view, model or structure of real life problem, and
 reduce its unnecessary details. With definition of properties of problems,
@@ -62,13 +61,13 @@ public:
     explicit SmartPtr(int *p = NULL) { ptr = p; }
 
     ~SmartPtr() {
-		delete(ptr);
+        delete(ptr);
     }
 
-	// Overloading dereferencing operator
+    // Overloading dereferencing operator
     int &operator *() {
-		return *ptr;
-	}
+        return *ptr;
+    }
 };
 
 int main() {
@@ -93,8 +92,8 @@ In C++, C function names may not be mangled, as C does not have function overloa
 int printf(char *format, ...);
 
 int main() {
-	printf("Hello, world!");
-	return 0;
+    printf("Hello, world!");
+    return 0;
 }
 ```
 
@@ -104,7 +103,7 @@ Gives -
 
 ```cpp
 undefined reference to `printf(char const*, ...)'
-    	ld returned 1 exit status
+        ld returned 1 exit status
 ```
 
 
@@ -112,7 +111,7 @@ Use `extern C` for C codes.
 
 ```cpp
 extern "C" {
-	int printf(char *format, ...);
+    int printf(char *format, ...);
 }
 int main() {
     printf("Hello, world!");
@@ -134,14 +133,14 @@ using namespace std;
 class Base {
 public:
     void show() {
-   	 cout << "Base\n";
+        cout << "Base\n";
     }
 };
 
 class Derv1: public Base {
 public:
     void show() {
-   	 cout << "Derv1\n";
+        cout << "Derv1\n";
     }
 };
 
@@ -149,7 +148,7 @@ public:
 class Derv2: public Base {
 public:
     void show() {
-   	 cout << "Derv2\n";
+        cout << "Derv2\n";
     }
 };
 
@@ -187,16 +186,16 @@ using namespace std;
 class Base {
 public:
     virtual void show() {
-		cout << "Base\n";
+        cout << "Base\n";
     }
 };
 
 class Derv1: public Base {
 public:
-	// not necessary to add `virtual` keyword, as the function of the base is
-	// virtual
+    // not necessary to add `virtual` keyword, as the function of the base is
+    // virtual
     void show() {
-		cout << "Derv1\n";
+        cout << "Derv1\n";
     }
 };
 
@@ -204,7 +203,7 @@ public:
 class Derv2: public Base {
 public:
     void show() {
-		cout << "Derv2\n";
+        cout << "Derv2\n";
     }
 };
 
@@ -257,7 +256,7 @@ public:
 class Derv1: public Base {
 public:
     void show() {
-		cout << "Derv1\n";
+        cout << "Derv1\n";
     }
 };
 
@@ -265,7 +264,7 @@ public:
 class Derv2: public Base {
 public:
     void show() {
-		cout << "Derv2\n";
+        cout << "Derv2\n";
     }
 };
 
@@ -355,22 +354,22 @@ using namespace std;
 
 class Base {
 public:
-	void show() {
-    	cout << "Base\n";
-	}
-	virtual ~Base() {
-		cout << "Base destroyed\n";
-	}
+    void show() {
+        cout << "Base\n";
+    }
+    virtual ~Base() {
+        cout << "Base destroyed\n";
+    }
 };
 
 class Derv: public Base {
 public:
-	void show() {
-		cout << "Derv\n";
-	}
-	~Derv() {
-		cout << "Derv destroyed\n";
-	}
+    void show() {
+        cout << "Derv\n";
+    }
+    ~Derv() {
+        cout << "Derv destroyed\n";
+    }
 };
 
 int main() {
@@ -484,7 +483,7 @@ to the most-derived version of the function objects of that class are allowed to
 ```
     Parent
    /       \
-Child1		Child2
+Child1        Child2
   \        /
  Grandchild
 ```
@@ -549,30 +548,30 @@ class Beta;
 
 class Alpha {
 private:
-	int data;
+    int data;
 public:
-	Alpha(): data(3) { };
-	friend int friendFunction(Alpha, Beta);
+    Alpha(): data(3) { };
+    friend int friendFunction(Alpha, Beta);
 };
 
 class Beta {
 private:
-	int data;
+    int data;
 public:
-	Beta(): data(7) { };
-	friend int friendFunction(Alpha, Beta);
+    Beta(): data(7) { };
+    friend int friendFunction(Alpha, Beta);
 };
 
 
 int friendFunction(Alpha alpha, Beta beta) {
-	return alpha.data + beta.data;
+    return alpha.data + beta.data;
 }
 
 int main() {
-	Alpha alpha;
-	Beta beta;
-	cout << friendFunction(alpha, beta) << "\n"; // outputs 10
-	return 0;
+    Alpha alpha;
+    Beta beta;
+    cout << friendFunction(alpha, beta) << "\n"; // outputs 10
+    return 0;
 }
 ```
 
@@ -590,25 +589,25 @@ using namespace std;
 
 class Alpha {
 private:
-	int data;
+    int data;
 public:
-	Alpha(): data(3) { };
-	friend class Beta;
+    Alpha(): data(3) { };
+    friend class Beta;
 };
 
 class Beta { // can access all private of Alpha
 public:
-	void func1(Alpha alpha) {
-    	cout << alpha.data << "\n";
-	}
+    void func1(Alpha alpha) {
+        cout << alpha.data << "\n";
+    }
 };
 
 
 int main() {
-	Alpha alpha;
-	Beta beta;
-	beta.func1(alpha);
-	return 0;
+    Alpha alpha;
+    Beta beta;
+    beta.func1(alpha);
+    return 0;
 }
 ```
 
@@ -623,17 +622,17 @@ using namespace std;
 class A {
 private:
     A() {
-    	cout << "constructor of A\n";
+        cout << "constructor of A\n";
     }
     friend class B;
 };
 
 // class B, friend of class A
-class B{
+class B {
 public:
-    B(){
-   	 A a1;
-   	 cout << "constructor of B\n";
+    B() {
+        A a1;
+        cout << "constructor of B\n";
     }
 };
 
@@ -667,18 +666,18 @@ private:
     int id;
 public:
     Gamma() {
-            ++ total;
-            id = total;
+        ++ total;
+        id = total;
     }
     ~ Gamma() {
-            -- total;
-            cout << "Destroying id number " << id << "\n";
+        -- total;
+        cout << "Destroying id number " << id << "\n";
     }
     static void showTotal() {
-            cout << "Total is " << total << "\n";
+        cout << "Total is " << total << "\n";
     }
     void showid() {
-            cout << "ID is " << id << "\n";
+        cout << "ID is " << id << "\n";
     }
 };
 
@@ -729,23 +728,23 @@ using namespace std;
 
 class Alpha {
 private:
-	Alpha() {
-		cout << "Constructor of Alpha" << endl;
-	}
+    Alpha() {
+        cout << "Constructor of Alpha" << endl;
+    }
 public:
-	static Alpha* getObject() {
-		return new Alpha();
-	}
-	void whoAmI() {
-		cout << "I am Alpha" << endl;
-	}
+    static Alpha* getObject() {
+        return new Alpha();
+    }
+    void whoAmI() {
+        cout << "I am Alpha" << endl;
+    }
 };
 
 
 int main() {
-	Alpha *alpha = Alpha::getObject();
-	alpha -> whoAmI();
-	return 0;
+    Alpha *alpha = Alpha::getObject();
+    alpha -> whoAmI();
+    return 0;
 }
 ```
 
@@ -767,20 +766,20 @@ private:
     int x, y;
 public:
     Point(int x1, int y1) {
-    	x = x1; y = y1;
+        x = x1; y = y1;
     }
 
     // Copy constructor
     Point(const Point &p2) {
-    	x = p2.x;
-    	y = p2.y;
+        x = p2.x;
+        y = p2.y;
     }
 
     int getX() {
-    	return x;
+        return x;
     }
     int getY() {
-    	return y;
+        return y;
     }
 };
 
@@ -833,18 +832,18 @@ public:
         delete[] m_data;
     }
 
-	char* getString() { return m_data; }
+    char* getString() { return m_data; }
 };
 
 
 int main() {
-	MyString hello{ "Hello, world!" };
-	{
-    	MyString copy{ hello }; // use default copy constructor
+    MyString hello{ "Hello, world!" };
+    {
+        MyString copy{ hello }; // use default copy constructor
    
     } // copy is a local variable, so it gets destroyed here.  The destructor deletes copy's string, which leaves hello with a dangling pointer
     std::cout << hello.getString() << '\n'; // this will have undefined behavior if we don't use deep copy
-	return 0;
+    return 0;
 }
 ```
 
@@ -901,14 +900,14 @@ public:
 
 
 int main() {
-	MyString hello{ "Hello, world!" };
-	{
-    	MyString copy{ hello }; // use default copy constructor
-	}
+    MyString hello{ "Hello, world!" };
+    {
+        MyString copy{ hello }; // use default copy constructor
+    }
     // copy is a local variable, so it gets destroyed here. The destructor deletes copy's string, since we
-	// have used deep copy, hello will have it's own copy of the string
+    // have used deep copy, hello will have it's own copy of the string
     std::cout << hello.getString() << '\n'; // no longer undefined behavior
-	return 0;
+    return 0;
 }
 ```
 
@@ -920,24 +919,24 @@ using namespace std;
 
 class Counter {
 private:
-	unsigned int count;
+    unsigned int count;
 public:
-	Counter(): count(0) {}
-	unsigned int getCount() {
-		return count;
-	}
-	void operator ++ () {
-		++count;
-	}
+    Counter(): count(0) {}
+    unsigned int getCount() {
+        return count;
+    }
+    void operator ++ () {
+        ++count;
+    }
 };
 
 int main() {
-	Counter c1, c2, c3;
-	++ c1;
-	cout << c1.getCount() << "\n"; // 1
-	++ c2;
-	cout << c2.getCount() << "\n"; // 1
-	cout << c3.getCount() << "\n"; // 0
+    Counter c1, c2, c3;
+    ++ c1;
+    cout << c1.getCount() << "\n"; // 1
+    ++ c2;
+    cout << c2.getCount() << "\n"; // 1
+    cout << c3.getCount() << "\n"; // 0
 }
 ```
 
@@ -981,9 +980,7 @@ Distance Distance::operator + (Distance d2) const {
 
 ```
 
-
 # Namespace
-
 
 ```cpp
 # include <iostream>
@@ -992,19 +989,19 @@ using namespace std;
 int value = 10;
 
 namespace first {
-	int value = 40;
-	namespace second {
-    	int value = 20;
-	}
+    int value = 40;
+    namespace second {
+        int value = 20;
+    }
 }
 
 int main() {
-	int value = 30;
-	cout << value << "\n"; // 30
-	cout << first::value << "\n"; // 40
-	cout << first::second::value << "\n"; // 20
-	cout << ::value << "\n"; // 10
-	return 0;
+    int value = 30;
+    cout << value << "\n"; // 30
+    cout << first::value << "\n"; // 40
+    cout << first::second::value << "\n"; // 20
+    cout << ::value << "\n"; // 10
+    return 0;
 }
 ```
 
@@ -1023,16 +1020,16 @@ using namespace std;
 int value = 10;
 
 namespace {
-	int val = 5;    
+    int val = 5;    
 }
 
 // namespace {
-// 	int val = 6;
+//     int val = 6;
 // } if included, will throw compilation error
 
 int main() {
-	cout << val << "\n"; // prints 5
-	return 0;
+    cout << val << "\n"; // prints 5
+    return 0;
 }
 ```
 
@@ -1041,11 +1038,10 @@ The namespace name is uniquely generated by the compiler.
 
 # Templates
 
-Templates make it possible to handle many different data types by a single
-function or class.
+Templates make it possible to handle different data types by a single function or
+class.
 
 ## Function Templates
-
 
 ```cpp
 #include <iostream>
@@ -1053,20 +1049,17 @@ using namespace std;
 
 template <class T>
 T abs (T n) {
-	return n < 0 ? -n : n;
+    return n < 0 ? -n : n;
 }
 
 int main() {
-	cout << abs(5) << "\n";
-	cout << abs(-5.2) << "\n";
-	return 0;
+    cout << abs(5) << "\n";
+    cout << abs(-5.2) << "\n";
+    return 0;
 }
-
 ```
 
-
 _More Than One Template Argument_
-
 
 ```cpp
 #include <iostream>
@@ -1075,18 +1068,18 @@ using namespace std;
 
 template <class atype, class btype>
 atype find_ (vector<atype> a, btype n, atype k) {
-	for (btype i = 0; i < n; ++i) {
-    	if (a[i] == k) {
-        	return i;
-    	}
-	}
+    for (btype i = 0; i < n; ++i) {
+        if (a[i] == k) {
+            return i;
+        }
+    }
     return static_cast<atype>(-1);
-	// return -1;
+    // return -1;
 }
 
 int main() {
-	cout << find_({-1.0, 2.1, 3.0}, 3, 2.1) << "\n";
-	return 0;
+    cout << find_({-1.0, 2.1, 3.0}, 3, 2.1) << "\n";
+    return 0;
 }
 ```
 
@@ -1100,30 +1093,30 @@ using namespace std;
 template <class Type>
 class Stack {
 private:
-	Type st[100];
-	int top;
+    Type st[100];
+    int top;
 public:
-	Stack() {
-		top = -1;
-	}
-	void push(Type var) {
-    	st[++top] = var;
-	}
-	Type pop() {
-    	return st[top--];
-	}
+    Stack() {
+        top = -1;
+    }
+    void push(Type var) {
+        st[++top] = var;
+    }
+    Type pop() {
+        return st[top--];
+    }
 };
 
 
 int main() {
-	Stack <float> s;
-	s.push(123.2);
-	s.push(236.78);
-	s.push(6553.1);
-	cout << s.pop() << "\n";
-	cout << s.pop() << "\n";
-	cout << s.pop() << "\n";
-	return 0;
+    Stack <float> s;
+    s.push(123.2);
+    s.push(236.78);
+    s.push(6553.1);
+    cout << s.pop() << "\n";
+    cout << s.pop() << "\n";
+    cout << s.pop() << "\n";
+    return 0;
 }
 ```
 
@@ -1141,56 +1134,54 @@ const int MAX = 3;
 
 class Stack {
 private:
-	int st[MAX];
-	int top;
+    int st[MAX];
+    int top;
 public:
-	class Full {
-   	 
-	};
-	class Empty {
-   	 
-	};
-	Stack() {
-    	top = -1;
-	}
-	void push(int var) {
-    	    if (top >= MAX - 1) {
-        	        throw Full();
-    	}
-    	st[++top] = var;
-	}
-	int pop() {
-    	    if (top < 0) {
-        	        throw Empty();
-    	}
-    	return st[top--];
-	}
+    class Full {
+        
+    };
+    class Empty {
+        
+    };
+    Stack() {
+        top = -1;
+    }
+    void push(int var) {
+        if (top >= MAX - 1) {
+            throw Full();
+        }
+        st[++top] = var;
+    }
+    int pop() {
+        if (top < 0) {
+            throw Empty();
+        }
+        return st[top--];
+    }
 };
 
 
 int main() {
-	Stack s;
-	try {
-    	    s.push(123);
-    	    s.push(236);
-    	    s.push(6553);
-    	    s.push(23);
-    	    cout << s.pop() << "\n";
-     	    cout << s.pop() << "\n";
-    	    cout << s.pop() << "\n";
-    	    cout << s.pop() << "\n";
-	} catch(Stack::Full) {
-    	    cout << "Exception: Stack Full!\n";
-	} catch (Stack::Empty) {
-    	    cout << "Exception: Stack Empty!\n";
-	}
-	return 0;
+    Stack s;
+    try {
+        s.push(123);
+        s.push(236);
+        s.push(6553);
+        s.push(23);
+        cout << s.pop() << "\n";
+        cout << s.pop() << "\n";
+        cout << s.pop() << "\n";
+        cout << s.pop() << "\n";
+    } catch(Stack::Full) {
+        cout << "Exception: Stack Full!\n";
+    } catch (Stack::Empty) {
+        cout << "Exception: Stack Empty!\n";
+    }
+    return 0;
 }
 ```
 
-
 We can also define exception classes.
-
 
 ```cpp
 #include <iostream>
@@ -1198,51 +1189,50 @@ using namespace std;
 
 class Dist {
 private:
-	int feet;
-	float inches;
+    int feet;
+    float inches;
 public:
-	class InchesEx {
-    	public:
-        	string origin;
-        	float iValue;
-       	 
-    	InchesEx(string org, float in) {
-        	origin = org;
-        	iValue = in; 
-    	      }
-	};
+    class InchesEx {
+        public:
+            string origin;
+            float iValue;
+            
+        InchesEx(string org, float in) {
+            origin = org;
+            iValue = in; 
+        }
+    };
     
     
-	Dist(int ft, float inc) {
-    	    if (inc >= 12.0) {
-              throw InchesEx("2 arg constructor", inc);
-    	  }
-    	  feet = ft;
-    	  inches = inc;
-	}
+    Dist(int ft, float inc) {
+        if (inc >= 12.0) {
+            throw InchesEx("2 arg constructor", inc);
+        }
+        feet = ft;
+        inches = inc;
+    }
  
-	void getDist() {
-    	    cout << "Enter feet:";
-    	    cin >> feet;
-    	    cout << "Enter inches";
-    	    cin >> inches;
-    	    if (inches >= 12.0) {
-              throw InchesEx("getDist function", inches);
-    	    }
-	}  
+    void getDist() {
+        cout << "Enter feet:";
+        cin >> feet;
+        cout << "Enter inches";
+        cin >> inches;
+        if (inches >= 12.0) {
+            throw InchesEx("getDist function", inches);
+        }
+    }  
 };
 
 
 int main() {
-	try {
-    	    Dist d(5, 13);
-	} catch (Dist::InchesEx ix) {
-    	    cout << "Error!\n" << ix.origin << "\nInches: " << ix.iValue <<"\n";
-	}
-	return 0;
+    try {
+        Dist d(5, 13);
+    } catch (Dist::InchesEx ix) {
+        cout << "Error!\n" << ix.origin << "\nInches: " << ix.iValue <<"\n";
+    }
+    return 0;
 }
 ```
-
 
 Built-in exception classes: `bad_alloc` is one example. There are many others in STL.
 
