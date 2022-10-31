@@ -20,3 +20,24 @@ int binarySearch(vector<int>& nums, int target){
   return -1;
 }
 ```
+
+## Sqrt(x)
+
+```python
+class Solution:
+    def mySqrt(self, x: int) -> int:
+        start = 0
+        end = x
+        ans = 0
+        while end >= start:
+            mid = (start + end) // 2
+            cur = mid * mid
+            if cur == x:
+                return mid
+            elif cur > x:
+                end = mid - 1
+            else:
+                ans = mid
+                start = mid + 1
+        return ans
+```
