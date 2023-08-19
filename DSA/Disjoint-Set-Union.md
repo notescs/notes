@@ -3,52 +3,62 @@
 With path compression (problem: https://leetcode.com/problems/number-of-provinces)
 
 ```cpp
+class DisjointSetUnion {
+private:
+    vector<int> parent;
+    vector<int> setSize;
+public:
+    DisjointSetUnion(int size) {
+        parent = vector<int>(size);
+        setSize = vector<int>(size);
+        for (int i = 0; i < size; ++i) {
+            parent[i] = i;
+            setSize[i] = 1;
+        }
+    }
+
+    int findRoot(int idx) {
+        while(parent[idx] != idx) {
+            // Can be sped up by:
+            // parent[idx] = parent[parent[idx]'
+            idx = parent[idx];
+        }
+        return idx;
+    }
+
+    void unionSets(int idx1, int idx2) {
+        int root1 = findRoot(idx1);
+        int root2 = findRoot(idx2);
+
+        if (root1 == root2) return;
+
+        if (setSize[root1] > setSize[root2]) {
+            parent[root1] = root2;
+            setSize[root1] += setSize[root2];
+        } else {
+            parent[root2] = root1;
+            setSize[root2] += setSize[root1];
+        }
+    }
+
+};
+
 class Solution {
 public:
-    int root(int arr[], int i) {
-        while(arr[i] != i) {
-            arr[i] = arr[arr[i]];
-            i = arr[i];
-        }
-        return i;
-    }
-    void union_(int arr[], int size[], int a, int b) {
-        int root_a = root(arr, a);
-        int root_b = root(arr, b);
-        if (root_a != root_b) {
-            if (size[root_a] < size[root_b]) {
-                arr[root_a] = arr[root_b];
-                size[root_b] += size[root_a];
-            } else {
-                arr[root_b] = arr[root_a];
-                size[root_a] += size[root_b];
-            }
-        }
-    }
-    bool find(int arr[], int a, int b) {
-        int root_a = root(arr, a);
-        int root_b = root(arr, b);
-        return root_a == root_b;
-    }
     int findCircleNum(vector<vector<int>>& M) {
         int n = M.size();
-        int arr[n], size[n];
-        for (int i = 0; i < n; i++) {
-            arr[i] = i;
-            size[i] = 1;
-        }
+        DisjointSetUnion* dsu = new DisjointSetUnion(n);
+        int c = n;
+
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < i; j++) {
-                if (M[i][j] == 1)
-                    union_(arr, size, i, j);
+                if (M[i][j] == 1 and dsu->findRoot(i) != dsu->findRoot(j)) {
+                    dsu->unionSets(i, j);
+                    --c;
+                }
             }
         }
-        int c = 0;
-        for (int i = 0; i < n; i++) {
-            if (arr[i] == i) {
-                c++;
-            }
-        }
+
         return c;
     }
 };
