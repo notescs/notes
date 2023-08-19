@@ -32,12 +32,12 @@ public:
 
         if (root1 == root2) return;
 
-        if (setSize[root1] > setSize[root2]) {
+        if (setSize[root2] > setSize[root1]) {
             parent[root1] = root2;
-            setSize[root1] += setSize[root2];
+            setSize[root2] += setSize[root1];
         } else {
             parent[root2] = root1;
-            setSize[root2] += setSize[root1];
+            setSize[root1] += setSize[root2];
         }
     }
 
