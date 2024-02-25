@@ -18,10 +18,9 @@ public:
     }
 
     int findRoot(int idx) {
-        while(parent[idx] != idx) {
-            // Can be sped up by:
-            // parent[idx] = parent[parent[idx]'
-            idx = parent[idx];
+        if(parent[idx] != idx) {
+            // apply path compression
+            idx = findRoot(parent[idx]);
         }
         return idx;
     }
