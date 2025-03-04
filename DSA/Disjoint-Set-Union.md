@@ -20,7 +20,7 @@ public:
     int findRoot(int idx) {
         if(parent[idx] != idx) {
             // apply path compression
-            idx = findRoot(parent[idx]);
+            parents[idx] = findRoot(parent[idx]);
         }
         return idx;
     }
