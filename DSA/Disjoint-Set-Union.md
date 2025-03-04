@@ -22,7 +22,7 @@ public:
             // apply path compression
             parents[idx] = findRoot(parent[idx]);
         }
-        return idx;
+        return parents[idx];
     }
 
     void unionSets(int idx1, int idx2) {
